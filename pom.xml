@@ -269,15 +269,12 @@
         <artifactId>git-code-format-maven-plugin</artifactId>
         <version>5.3</version>
         <executions>
-            <!-- On commit, format the modified files -->
             <execution>
                 <id>install-formatter-hook</id>
                 <goals>
                     <goal>install-hooks</goal>
                 </goals>
             </execution>
-            <!-- On Maven verify phase, fail if any file
-            (including unmodified) is badly formatted -->
             <execution>
                 <id>validate-code-format</id>
                 <goals>
@@ -285,8 +282,10 @@
                 </goals>
             </execution>
         </executions>
+        <configuration>
+            <skip>${skipTests}</skip>
+        </configuration>
         <dependencies>
-            <!-- Enable https://github.com/google/google-java-format -->
             <dependency>
                 <groupId>com.cosium.code</groupId>
                 <artifactId>google-java-format</artifactId>
@@ -294,7 +293,6 @@
             </dependency>
         </dependencies>
       </plugin>
-
 
       <!-- Test case coverage report -->
       <plugin>
